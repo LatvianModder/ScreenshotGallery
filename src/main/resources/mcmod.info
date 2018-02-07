@@ -1,0 +1,17 @@
+[
+	{
+		"modid": "screenshotgallery",
+		"name": "Screenshot Gallery",
+		"description": "",
+		"version": "${version}",
+		"mcversion": "${mcversion}",
+		"url": "https://minecraft.curseforge.com/projects/screenshot-gallery",
+		"updateUrl": "",
+		"authorList": ["LatvianModder"],
+		"credits": "",
+		"logoFile": "assets/screenshotgallery/textures/logo.png",
+		"screenshots": [],
+		"parent": "",
+		"dependencies": []
+	}
+]

@@ -1,1 +1,1 @@
-# ScreenshotGallery
+# Screenshot Gallery [![](http://cf.way2muchnoise.eu/screenshot-gallery.svg)](https://minecraft.curseforge.com/projects/screenshot-gallery) [![](http://cf.way2muchnoise.eu/versions/screenshot-gallery.svg)](https://minecraft.curseforge.com/projects/screenshot-gallery)
