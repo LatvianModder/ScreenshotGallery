@@ -21,7 +21,7 @@ public class ScreenshotGalleryEventHandler
 	@SubscribeEvent
 	public static void onScreenshot(ScreenshotEvent event)
 	{
-		File folder = ScreenshotGalleryConfig.general.folder.isEmpty() ? new File(Minecraft.getMinecraft().mcDataDir, "screenshots") : new File(ScreenshotGalleryConfig.general.folder);
+		File folder = ScreenshotGalleryConfig.folder.isEmpty() ? new File(Minecraft.getMinecraft().mcDataDir, "screenshots") : new File(ScreenshotGalleryConfig.folder);
 
 		if (!folder.exists())
 		{
@@ -35,13 +35,13 @@ public class ScreenshotGalleryEventHandler
 
 			ITextComponent output = new TextComponentString(file.getName());
 
-			if (ScreenshotGalleryConfig.general.output_url_prefix.isEmpty())
+			if (ScreenshotGalleryConfig.outputURLPrefix.isEmpty())
 			{
 				output.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_FILE, file.getAbsolutePath()));
 			}
 			else
 			{
-				output.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, ScreenshotGalleryConfig.general.output_url_prefix + "/" + file.getName()));
+				output.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, ScreenshotGalleryConfig.outputURLPrefix + "/" + file.getName()));
 			}
 
 			output.getStyle().setUnderlined(true);

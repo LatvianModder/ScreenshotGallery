@@ -1,4 +1,3 @@
-screenshotgallery.general=General
-screenshotgallery.general.folder=Folder
-screenshotgallery.general.output_url_prefix=Output URL Prefix
-screenshotgallery.general.generate_thumbnails=Generate Thumbnails
+screenshotgallery.config.folder=Folder
+screenshotgallery.config.output_url_prefix=Output URL Prefix
+screenshotgallery.config.generate_thumbnails=Generate Thumbnails

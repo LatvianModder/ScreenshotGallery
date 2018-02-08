@@ -1,40 +1,45 @@
 package com.latmod.screenshotsgallery;
 
-import net.minecraftforge.common.config.Config;
-import net.minecraftforge.common.config.ConfigManager;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 
 import java.io.File;
 
 /**
  * @author LatvianModder
  */
-@Mod.EventBusSubscriber(modid = ScreenshotGallery.MOD_ID)
-@Config(modid = ScreenshotGallery.MOD_ID, category = "", name = "../local/client/" + ScreenshotGallery.MOD_ID)
 public class ScreenshotGalleryConfig
 {
-	public static final General general = new General();
+	public static Configuration config;
+	public static Property propertyFolder, propertyOutputURLPrefix, propertyGenerateThumbnails;
+	public static String folder, outputURLPrefix;
+	public static boolean generateThumbnails;
 
-	public static class General
+	public static void init()
 	{
-		@Config.Comment("Folder where all screenshots will be stored. Blank means the default screenshots folder")
-		public String folder = System.getProperty("user.home") + File.separatorChar + "Pictures" + File.separatorChar + "Minecraft Screenshots";
+		config = new Configuration(new File(System.getProperty("user.home") + File.separatorChar + "Pictures", "ScreenshotGalleryMod.cfg"));
+		config.load();
 
-		@Config.Comment("What URL will be printed in chat. If blank, it will print file URL.")
-		public String output_url_prefix = "";
+		propertyFolder = config.get("config", "folder", System.getProperty("user.home") + File.separatorChar + "Pictures" + File.separatorChar + "Minecraft Screenshots");
+		propertyFolder.setComment("Folder where all screenshots will be stored. Blank means the default screenshots folder.");
+		propertyFolder.setLanguageKey(ScreenshotGallery.MOD_ID + ".config.folder");
 
-		//@Config.Comment("Generates jpg thumbnails in folder/thumbs directory. Loads gallery faster.")
-		//public boolean generate_thumbnails = true;
+		propertyOutputURLPrefix = config.get("config", "output_url_prefix", "");
+		propertyOutputURLPrefix.setComment("What URL will be printed in chat. If blank, it will print file URL.");
+		propertyOutputURLPrefix.setLanguageKey(ScreenshotGallery.MOD_ID + ".config.output_url_prefix");
+
+		propertyGenerateThumbnails = config.get("config", "generate_thumbnails", true);
+		propertyGenerateThumbnails.setComment("Generates jpg thumbnails in folder/thumbs directory. Loads gallery faster.");
+		propertyGenerateThumbnails.setLanguageKey(ScreenshotGallery.MOD_ID + ".config.generate_thumbnails");
+
+		reloadProperties();
+		config.save();
 	}
 
-	@SubscribeEvent
-	public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event)
+	public static void reloadProperties()
 	{
-		if (event.getModID().equals(ScreenshotGallery.MOD_ID))
-		{
-			ConfigManager.sync(ScreenshotGallery.MOD_ID, Config.Type.INSTANCE);
-		}
+		folder = propertyFolder.getString();
+		outputURLPrefix = propertyOutputURLPrefix.getString();
+		generateThumbnails = propertyGenerateThumbnails.getBoolean();
 	}
 }
