@@ -22,15 +22,15 @@ public class ScreenshotGalleryConfig
 
 		propertyFolder = config.get("config", "folder", System.getProperty("user.home") + File.separatorChar + "Pictures" + File.separatorChar + "Minecraft Screenshots");
 		propertyFolder.setComment("Folder where all screenshots will be stored. Blank means the default screenshots folder.");
-		propertyFolder.setLanguageKey(ScreenshotGallery.MOD_ID + ".config.folder");
+		propertyFolder.setLanguageKey("screenshotgallery.config.folder");
 
 		propertyOutputURLPrefix = config.get("config", "output_url_prefix", "");
 		propertyOutputURLPrefix.setComment("What URL will be printed in chat. If blank, it will print file URL.");
-		propertyOutputURLPrefix.setLanguageKey(ScreenshotGallery.MOD_ID + ".config.output_url_prefix");
+		propertyOutputURLPrefix.setLanguageKey("screenshotgallery.config.output_url_prefix");
 
 		propertyGenerateThumbnails = config.get("config", "generate_thumbnails", true);
 		propertyGenerateThumbnails.setComment("Generates jpg thumbnails in folder/thumbs directory. Loads gallery faster.");
-		propertyGenerateThumbnails.setLanguageKey(ScreenshotGallery.MOD_ID + ".config.generate_thumbnails");
+		propertyGenerateThumbnails.setLanguageKey("screenshotgallery.config.generate_thumbnails");
 
 		reloadProperties();
 		config.save();
