@@ -1,0 +1,35 @@
+{
+	"title": "Screenshot Gallery",
+	"type": "mod",
+	"modid": "screenshotgallery",
+	"authors": ["LatvianModder"],
+	"buttons": [
+		{
+			"title": "CurseForge Page",
+			"icon": "https://i.imgur.com/Kii5WVB.png",
+			"click": "https://minecraft.curseforge.com/projects/screenshot-gallery"
+		},
+		{
+			"title": "LatvianModder's Patreon",
+			"icon": "https://i.imgur.com/RTyvASj.png",
+			"click": "https://www.patreon.com/LatvianModder"
+		},
+		{
+			"title": "Bugs & Suggestions",
+			"icon": "ftblib:icons/bug",
+			"click": "https://github.com/LatvianModder/ScreenshotGallery/issues"
+		}
+	],
+	"pages": [
+		{
+			"id": "uploading_ftp",
+			"title": "Uploading to FTP",
+			"icon": "ftblib:icons/info"
+		},
+		{
+			"id": "uploading_imgur",
+			"title": "Uploading to Imgur",
+			"icon": "ftblib:icons/info"
+		}
+	]
+}
