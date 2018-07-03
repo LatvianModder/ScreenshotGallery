@@ -1,0 +1,9 @@
+{
+	"gallery": {
+		"group": "ftblib:util",
+		"icon": "ftblib:icons/camera",
+		"x": 10000,
+		"click": "command:/screenshotgallery",
+		"config": false
+	}
+}
