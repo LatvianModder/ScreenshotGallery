@@ -11,8 +11,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -25,6 +28,8 @@ public class ScreenshotManager implements Iterable<Screenshot>
 	public static final ScreenshotManager INSTANCE = new ScreenshotManager();
 
 	private final LinkedHashMap<String, Screenshot> map = new LinkedHashMap<>();
+	private final ArrayList<Screenshot> slist = new ArrayList<>();
+	public final List<Screenshot> list = Collections.unmodifiableList(slist);
 
 	private String newID()
 	{
@@ -43,6 +48,7 @@ public class ScreenshotManager implements Iterable<Screenshot>
 	{
 		Screenshot screenshot = new Screenshot(this, newID());
 		map.put(screenshot.id, screenshot);
+		updateList();
 		return screenshot;
 	}
 
@@ -58,6 +64,8 @@ public class ScreenshotManager implements Iterable<Screenshot>
 
 		if (screenshot != null)
 		{
+			updateList();
+
 			ThreadedFileIOBase.getThreadedIOInstance().queueIO(() -> {
 				File file;
 
@@ -120,6 +128,8 @@ public class ScreenshotManager implements Iterable<Screenshot>
 			ScreenshotGallery.LOGGER.info("Found " + map.size() + " screenshots in " + ScreenshotGalleryConfig.folderFile.getAbsolutePath());
 			return;
 		}
+
+		updateList();
 
 		File[] files = ScreenshotGalleryConfig.folderFile.listFiles();
 
@@ -199,9 +209,15 @@ public class ScreenshotManager implements Iterable<Screenshot>
 		return false;
 	}
 
+	private void updateList()
+	{
+		slist.clear();
+		slist.addAll(map.values());
+	}
+
 	@Override
 	public Iterator<Screenshot> iterator()
 	{
-		return map.values().iterator();
+		return slist.iterator();
 	}
 }

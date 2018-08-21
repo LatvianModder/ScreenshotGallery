@@ -1,5 +1,6 @@
 package com.latmod.screenshotsgallery;
 
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -8,6 +9,9 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.event.ClickEvent;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -25,6 +29,17 @@ public class GuiGallery extends GuiScreen
 {
 	public static final GuiGallery INSTANCE = new GuiGallery();
 
+	private static class ButtonScreenshot extends GuiButton
+	{
+		public final Screenshot screenshot;
+
+		public ButtonScreenshot(int id, int y, FontRenderer font, int gw, Screenshot s)
+		{
+			super(id, (gw - font.getStringWidth(s.getDisplayName()) - 8) / 2, y, font.getStringWidth(s.getDisplayName()) + 8, 20, s.getDisplayName());
+			screenshot = s;
+		}
+	}
+
 	public Screenshot current = null, toOpen = null;
 
 	private GuiGallery()
@@ -40,19 +55,51 @@ public class GuiGallery extends GuiScreen
 	public void initGui()
 	{
 		buttonList.clear();
+		buttonList.add(new GuiButton(0, width - 43, 7, 36, 20, I18n.format("gui.close")));
 
 		if (current != null)
 		{
-			buttonList.add(new GuiButton(0, width - 24, 6, 18, 18, "gui.close")); //LANG
+			buttonList.add(new GuiButton(1, 7, 7, 36, 20, I18n.format("gui.open")));
+		}
+		else
+		{
+			int max = (height - 70) / 22;
+
+			for (int i = ScreenshotManager.INSTANCE.list.size() - 1; i >= 0; i--)
+			{
+				buttonList.add(new ButtonScreenshot(1000 + buttonList.size(), buttonList.size() * 24 + 40, fontRenderer, width, ScreenshotManager.INSTANCE.list.get(i)));
+
+				if (buttonList.size() == max)
+				{
+					break;
+				}
+			}
 		}
 	}
 
 	@Override
 	public void actionPerformed(GuiButton button)
 	{
-		if (button.id == 0)
+		if (button instanceof ButtonScreenshot)
 		{
-			setOpenScreenshot(null);
+			setOpenScreenshot(((ButtonScreenshot) button).screenshot);
+		}
+		else if (button.id == 0)
+		{
+			if (current == null)
+			{
+				mc.displayGuiScreen(null);
+			}
+			else
+			{
+				setOpenScreenshot(null);
+			}
+		}
+		else if (button.id == 1)
+		{
+			ITextComponent textComponent = new TextComponentString("");
+			textComponent.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_FILE, current.localFile));
+			handleComponentClick(textComponent);
 		}
 	}
 
@@ -159,20 +206,23 @@ public class GuiGallery extends GuiScreen
 			}
 		}
 
+		double w = width - 10;
+		double h = 24;
+
+		double x = 5;
+		double y = 5;
+
+		GlStateManager.disableTexture2D();
+		GlStateManager.shadeModel(GL11.GL_SMOOTH);
+
+		GlStateManager.color(1F, 1F, 1F, 0.4F);
+		rect(x, y, w, h);
+
+		GlStateManager.shadeModel(GL11.GL_FLAT);
+		GlStateManager.enableTexture2D();
+
 		if (current != null && current.textureID != 0)
 		{
-			double w = width - 10;
-			double h = 20;
-
-			double x = 5;
-			double y = 5;
-
-			GlStateManager.disableTexture2D();
-			GlStateManager.shadeModel(GL11.GL_SMOOTH);
-
-			GlStateManager.color(1F, 1F, 1F, 0.4F);
-			rect(x, y, w, h);
-
 			w = width - 10;
 			h = height - 35;
 
@@ -185,7 +235,7 @@ public class GuiGallery extends GuiScreen
 			}
 
 			x = (width - w) / 2D;
-			y = 25 + (height - h - 25) / 2D;
+			y = 29 + (height - h - 29) / 2D;
 
 			GlStateManager.color(0F, 0F, 0F, 0.7F);
 			rect(x, y, w, h);
@@ -195,15 +245,13 @@ public class GuiGallery extends GuiScreen
 			w -= 2;
 			h -= 2;
 
-			GlStateManager.shadeModel(GL11.GL_FLAT);
-			GlStateManager.enableTexture2D();
 			GlStateManager.bindTexture(current.textureID);
 
 			GlStateManager.color(1F, 1F, 1F, 1F);
 			texturedRect(x, y, w, h, 0, 0, 1, 1);
 		}
 
-		drawCenteredString(fontRenderer, current == null ? I18n.format("sidebar_button.screenshotgallery.gallery") : current.getDisplayName(), width / 2, 11, 16777215);
+		drawCenteredString(fontRenderer, current == null ? I18n.format("sidebar_button.screenshotgallery.gallery") : current.getDisplayName(), width / 2, 13, 16777215);
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 

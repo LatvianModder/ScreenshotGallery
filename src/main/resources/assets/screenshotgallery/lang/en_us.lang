@@ -11,3 +11,6 @@ screenshotgallery.ftp.url=Upload URL
 
 sidebar_button.screenshotgallery.gallery=Screenshot Gallery
 commands.screenshotgallery.usage=/screenshotgallery [id]
+
+gui.close=Close
+gui.open=Open
