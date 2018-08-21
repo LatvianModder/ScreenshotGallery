@@ -12,7 +12,6 @@ import java.io.File;
 		modid = ScreenshotGallery.MOD_ID,
 		name = ScreenshotGallery.MOD_NAME,
 		version = ScreenshotGallery.VERSION,
-		acceptedMinecraftVersions = "[1.12,)",
 		clientSideOnly = true,
 		guiFactory = "com.latmod.screenshotsgallery.ScreenshotGalleryGuiFactory"
 )
