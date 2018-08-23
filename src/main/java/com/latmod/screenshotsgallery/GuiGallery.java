@@ -237,8 +237,12 @@ public class GuiGallery extends GuiScreen
 			x = (width - w) / 2D;
 			y = 29 + (height - h - 29) / 2D;
 
-			GlStateManager.color(0F, 0F, 0F, 0.7F);
+			GlStateManager.disableTexture2D();
+			GlStateManager.shadeModel(GL11.GL_SMOOTH);
+			GlStateManager.color(1F, 1F, 1F, 0.7F);
 			rect(x, y, w, h);
+			GlStateManager.shadeModel(GL11.GL_FLAT);
+			GlStateManager.enableTexture2D();
 
 			x += 1;
 			y += 1;
