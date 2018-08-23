@@ -126,10 +126,9 @@ public class ScreenshotManager implements Iterable<Screenshot>
 			}
 
 			ScreenshotGallery.LOGGER.info("Found " + map.size() + " screenshots in " + ScreenshotGalleryConfig.folderFile.getAbsolutePath());
+			updateList();
 			return;
 		}
-
-		updateList();
 
 		File[] files = ScreenshotGalleryConfig.folderFile.listFiles();
 
@@ -175,6 +174,7 @@ public class ScreenshotManager implements Iterable<Screenshot>
 
 			ScreenshotGallery.LOGGER.info("Loaded " + map.size() + " screenshots in " + ScreenshotGalleryConfig.folderFile.getAbsolutePath());
 			saveIndex();
+			updateList();
 		}
 	}
 
