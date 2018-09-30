@@ -31,7 +31,7 @@ minecraft {
 	runDir = "run"
 	mappings = "${mappings_version}"
 
-	replace "@VERSION@", project.version
+	replace "0.0.0.screenshotgallery", project.version
 	replaceIn "${mod_reference}"
 }
 

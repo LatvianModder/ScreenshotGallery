@@ -1,4 +1,4 @@
-package com.latmod.screenshotsgallery;
+package com.latmod.mods.screenshotsgallery;
 
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;

@@ -1,3 +1,3 @@
 @mcp.MethodsReturnNonnullByDefault
 @javax.annotation.ParametersAreNonnullByDefault
-package com.latmod.screenshotsgallery;
+package com.latmod.mods.screenshotsgallery;

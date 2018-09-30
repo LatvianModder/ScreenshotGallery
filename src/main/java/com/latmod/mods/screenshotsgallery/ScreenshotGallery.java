@@ -1,4 +1,4 @@
-package com.latmod.screenshotsgallery;
+package com.latmod.mods.screenshotsgallery;
 
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -13,13 +13,13 @@ import java.io.File;
 		name = ScreenshotGallery.MOD_NAME,
 		version = ScreenshotGallery.VERSION,
 		clientSideOnly = true,
-		guiFactory = "com.latmod.screenshotsgallery.ScreenshotGalleryGuiFactory"
+		guiFactory = "ScreenshotGalleryGuiFactory"
 )
 public class ScreenshotGallery
 {
 	public static final String MOD_ID = "screenshotgallery";
 	public static final String MOD_NAME = "Screenshot Gallery";
-	public static final String VERSION = "@VERSION@";
+	public static final String VERSION = "0.0.0.screenshotgallery";
 	public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
 	public static File dataDirectory;
 

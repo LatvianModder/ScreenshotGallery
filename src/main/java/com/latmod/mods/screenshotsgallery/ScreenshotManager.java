@@ -1,4 +1,4 @@
-package com.latmod.screenshotsgallery;
+package com.latmod.mods.screenshotsgallery;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.nbt.CompressedStreamTools;

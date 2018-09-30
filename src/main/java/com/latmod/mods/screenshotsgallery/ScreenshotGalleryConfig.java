@@ -1,4 +1,4 @@
-package com.latmod.screenshotsgallery;
+package com.latmod.mods.screenshotsgallery;
 
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;

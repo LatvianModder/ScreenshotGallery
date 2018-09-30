@@ -1,4 +1,4 @@
-package com.latmod.screenshotsgallery;
+package com.latmod.mods.screenshotsgallery;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
