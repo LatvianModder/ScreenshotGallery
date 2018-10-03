@@ -1,0 +1,17 @@
+### Translated by RoCoKo
+screenshotgallery.config.folder=Klasör
+screenshotgallery.config.formatting=Biçimlendirme
+screenshotgallery.config.auto_upload=Otomatik Yükleme
+
+screenshotgallery.ftp=FTP
+screenshotgallery.ftp.host=Host
+screenshotgallery.ftp.user=Kullanıcı
+screenshotgallery.ftp.password=Şifre
+screenshotgallery.ftp.path=Yükleme Yolu
+screenshotgallery.ftp.url=Yükleme URL
+
+sidebar_button.screenshotgallery.gallery=Ekran Görüntüsü Galerisi
+commands.screenshotgallery.usage=/screenshotgallery [id]
+
+gui.close=Kapat
+gui.open=Aç
