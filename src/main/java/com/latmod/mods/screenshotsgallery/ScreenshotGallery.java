@@ -13,7 +13,7 @@ import java.io.File;
 		name = ScreenshotGallery.MOD_NAME,
 		version = ScreenshotGallery.VERSION,
 		clientSideOnly = true,
-		guiFactory = "ScreenshotGalleryGuiFactory"
+		guiFactory = "com.latmod.mods.screenshotsgallery.ScreenshotGalleryGuiFactory"
 )
 public class ScreenshotGallery
 {
